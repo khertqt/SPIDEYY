@@ -33,7 +33,6 @@
     position:relative;
   }
 
-  /* soft drifting web-lines in the corners, hand-drawn feel, no IP imagery */
   .web{
     position:fixed;
     width:220px;
@@ -391,6 +390,22 @@
     const btn = form.querySelector('.cta');
     btn.textContent = 'thank you 🥰';
     btn.disabled = true;
+
+    // Open a pre-filled email so she can send you the confirmation with one click
+    const YOUR_EMAIL = "gallardekhert@gmail.com";
+    const subject = encodeURIComponent("She picked a date! 🕸️💗");
+    const body = encodeURIComponent(
+      `She picked our movie date!\n\nSpider-Man: Brand New Day\n${chosen.value}\n\nSee you there 💕`
+    );
+    const mailtoLink = `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`;
+
+    const emailNote = document.createElement('p');
+    emailNote.className = 'thank-you';
+    emailNote.innerHTML = `<a href="${mailtoLink}" style="color:var(--accent-2); text-decoration:underline;">tap here to send the confirmation 💌</a>`;
+    result.appendChild(emailNote);
+
+    // Try to open her email app automatically too
+    window.location.href = mailtoLink;
   });
 </script>
 
